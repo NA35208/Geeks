@@ -1,0 +1,5 @@
+height=int(input("Enter your height in cm: "))
+if height>145:
+    print("You are tall enough to ride ")
+else:
+    print("Need to grow some more to ride")
