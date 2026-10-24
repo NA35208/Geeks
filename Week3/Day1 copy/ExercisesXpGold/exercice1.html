@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+   <head></head>
+   <body>
+      <select id="genres">
+  <option value="rock">Rock</option>
+  <option value="blues" selected>Blues</option>
+   <option value="classic" selected>Classic</option>
+</select>
+<p>Selected value: <span id="selected-value"></span></p>
+<script>
+   const genres = document.getElementById("genres");
+   const selectedValue = document.getElementById("selected-value");
+
+   function displaySelectedValue() {
+      selectedValue.textContent = genres.value;
+   }
+
+   genres.addEventListener("change", displaySelectedValue);
+   displaySelectedValue();
+</script>
+
+   </body>
+</html>

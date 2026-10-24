@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+ <head>
+  <meta charset="utf-8" />
+  <title>Challenge: Mad Libs</title>
+ </head>
+ <body>
+
+    <h1>Mad Libs</h1>
+
+    <form id="libform">
+        <label for="noun">Noun:</label><input type="text" id="noun"><br>
+        <label for="adjective">Adjective:</label><input type="text" id="adjective"><br>
+        <label for="person">Someone's Name:</label><input type="text" id="person"><br>
+        <label for="verb">Verb:</label><input type="text" id="verb"><br>
+        <label for="place">A place:</label><input type="text" id="place"><br>
+        <button id="lib-button">Lib it!</button>
+    </form>
+
+    <button id="shuffle-button" type="button" disabled>Shuffle story</button>
+
+    <p>Generated story: 
+    <span id="story"></span>
+    </p>
+
+    <script>
+        const form = document.getElementById("libform");
+        const storyElement = document.getElementById("story");
+        const shuffleButton = document.getElementById("shuffle-button");
+        let words = null;
+        let previousStoryIndex = -1;
+
+        const stories = [
+            ({ noun, adjective, person, verb, place }) => `${person} took a ${adjective} ${noun} to ${place} and decided to ${verb} all afternoon.`,
+            ({ noun, adjective, person, verb, place }) => `At ${place}, ${person} found a ${adjective} ${noun} and began to ${verb} in celebration.`,
+            ({ noun, adjective, person, verb, place }) => `Everyone at ${place} watched as ${person} tried to ${verb} with a ${adjective} ${noun}.`,
+            ({ noun, adjective, person, verb, place }) => `${person} packed a ${adjective} ${noun} before going to ${place} to ${verb}.`
+        ];
+
+        function showRandomStory() {
+            let storyIndex;
+            do {
+                storyIndex = Math.floor(Math.random() * stories.length);
+            } while (storyIndex === previousStoryIndex);
+
+            previousStoryIndex = storyIndex;
+            storyElement.textContent = stories[storyIndex](words);
+        }
+
+        form.addEventListener("submit", (event) => {
+            event.preventDefault();
+
+            const fields = ["noun", "adjective", "person", "verb", "place"];
+            const values = Object.fromEntries(fields.map((field) => [
+                field,
+                document.getElementById(field).value.trim()
+            ]));
+
+            const emptyField = fields.find((field) => !values[field]);
+            if (emptyField) {
+                document.getElementById(emptyField).focus();
+                storyElement.textContent = "Please fill in every field.";
+                return;
+            }
+
+            words = values;
+            previousStoryIndex = -1;
+            shuffleButton.disabled = false;
+            showRandomStory();
+        });
+
+        shuffleButton.addEventListener("click", () => {
+            if (words) showRandomStory();
+        });
+    </script>
+
+ </body>
+</html>
