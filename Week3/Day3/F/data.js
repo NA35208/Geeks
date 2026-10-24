@@ -1,0 +1,267 @@
+const catalogItems = [
+  {
+    id: 1,
+    title: "Porsche 911 GT3",
+    marque: "Porsche",
+    categorie: "Voiture sportive",
+    annee: 2024,
+    image: "https://images.unsplash.com/photo-1503376780353-7e6692767b70?auto=format&fit=crop&w=1200&q=85",
+    metric: 510,
+    unite: "ch",
+    prix: 164900,
+    acceleration: "3,4 secondes",
+    vitesseMax: "311 km/h",
+    transmission: "Boîte PDK à 7 rapports",
+    motorisation: "Essence",
+    descriptionCourte: "Une voiture sportive conçue pour le circuit, alliant précision de conduite et moteur atmosphérique performant.",
+    detailsComplets: "La Porsche 911 GT3 offre une tenue de route exceptionnelle, un moteur six cylindres à plat à haut régime et une aérodynamique inspirée de la compétition. Sa construction légère et son moteur arrière lui confèrent un comportement routier distinctif.",
+    pointsForts: [
+      "Moteur six cylindres atmosphérique",
+      "Propulsion arrière",
+      "Aérodynamique inspirée du sport automobile"
+    ]
+  },
+{
+    id: 2,
+    title: "Ferrari SF90 Stradale",
+    marque: "Ferrari",
+    categorie: "Supercar",
+    annee: 2024,
+    image: "https://images.unsplash.com/photo-1592198084033-aade902d1aae?auto=format&fit=crop&w=1200&q=85",
+    metric: 986,
+    unite: "ch",
+    prix: 524000,
+    acceleration: "2,5 secondes",
+    vitesseMax: "340 km/h",
+    transmission: "Boîte à double embrayage à 8 rapports",
+    motorisation: "Hybride rechargeable",
+    descriptionCourte: "Une supercar hybride qui associe un moteur V8 biturbo à trois moteurs électriques.",
+    detailsComplets: "La Ferrari SF90 Stradale illustre les technologies d'électrification de Ferrari. Sa motorisation hybride, sa transmission intégrale et son aérodynamique avancée lui permettent d'offrir des accélérations remarquables.",
+    pointsForts: [
+      "Moteur V8 biturbo hybride",
+      "Transmission intégrale",
+      "Recharge électrique"
+    ]
+  },
+  {
+    id: 3,
+    title: "Lamborghini Revuelto",
+    marque: "Lamborghini",
+    categorie: "Supercar",
+    annee: 2024,
+    image: "https://images.unsplash.com/photo-1544636331-e26879cd4d9b?auto=format&fit=crop&w=1200&q=85",
+    metric: 1001,
+    unite: "ch",
+    prix: 608000,
+    acceleration: "2,5 secondes",
+    vitesseMax: "Plus de 350 km/h",
+    transmission: "Boîte à double embrayage à 8 rapports",
+    motorisation: "Hybride rechargeable",
+    descriptionCourte: "Une supercar hybride spectaculaire qui associe un moteur V12 emblématique à une technologie électrifiée.",
+    detailsComplets: "La Lamborghini Revuelto combine un moteur V12 atmosphérique avec trois moteurs électriques. Sa structure en fibre de carbone, son design angulaire et sa motorisation hybride représentent une nouvelle génération de supercars Lamborghini.",
+    pointsForts: [
+      "Moteur V12 atmosphérique",
+      "Trois moteurs électriques",
+      "Structure monocoque en fibre de carbone"
+    ]
+  },
+  {
+    id: 4,
+    title: "BMW M3 Competition",
+    marque: "BMW",
+    categorie: "Berline sportive",
+    annee: 2024,
+    image: "https://images.unsplash.com/photo-1555215695-3004980ad54e?auto=format&fit=crop&w=1200&q=85",
+    metric: 503,
+    unite: "ch",
+    prix: 80600,
+    acceleration: "3,8 secondes",
+    vitesseMax: "Jusqu'à 290 km/h selon version",
+    transmission: "Boîte automatique à 8 rapports",
+    motorisation: "Essence",
+    descriptionCourte: "Une berline sportive qui associe confort quotidien, puissance et performances sur circuit.",
+    detailsComplets: "La BMW M3 Competition possède un moteur six cylindres en ligne biturbo, une direction précise et un châssis orienté vers la performance. Elle combine la praticité d'une berline quatre portes au savoir-faire sportif de BMW M.",
+    pointsForts: [
+      "Moteur six cylindres biturbo",
+      "Suspension adaptative M",
+      "Habitacle à quatre portes"
+    ]
+  },
+  {
+    id: 5,
+    title: "Mercedes-AMG GT",
+    marque: "Mercedes-AMG",
+    categorie: "Voiture sportive",
+    annee: 2024,
+    image: "https://images.unsplash.com/photo-1618843479313-40f8afb4b4d8?auto=format&fit=crop&w=1200&q=85",
+    metric: 577,
+    unite: "ch",
+    prix: 136000,
+    acceleration: "3,2 secondes",
+    vitesseMax: "315 km/h",
+    transmission: "Boîte automatique à 9 rapports",
+    motorisation: "Essence",
+    descriptionCourte: "Une sportive de grand tourisme au design musclé et au moteur AMG assemblé avec soin.",
+    detailsComplets: "La Mercedes-AMG GT associe un moteur V8 biturbo, un châssis sophistiqué et un habitacle centré sur le conducteur. Les caractéristiques exactes dépendent de la version choisie.",
+    pointsForts: [
+      "Moteur V8 biturbo AMG",
+      "Châssis orienté performance",
+      "Intérieur haut de gamme"
+    ]
+  },
+  {
+    id: 6,
+    title: "Audi RS e-tron GT",
+    marque: "Audi",
+    categorie: "Voiture électrique",
+    annee: 2024,
+    image: "https://images.unsplash.com/photo-1606664515524-ed2f786a0bd6?auto=format&fit=crop&w=1200&q=85",
+    metric: 637,
+    unite: "ch",
+    prix: 147000,
+    acceleration: "3,1 secondes",
+    vitesseMax: "250 km/h",
+    transmission: "Transmission électrique à deux rapports",
+    motorisation: "Électrique",
+    descriptionCourte: "Un grand tourisme électrique élégant, combinant accélérations rapides et confort haut de gamme.",
+    detailsComplets: "L'Audi RS e-tron GT utilise une motorisation électrique à deux moteurs et une transmission intégrale. Son design aérodynamique, son éclairage distinctif et sa capacité de recharge rapide en font une sportive électrique premium.",
+    pointsForts: [
+      "Deux moteurs électriques",
+      "Transmission intégrale quattro",
+      "Recharge rapide en courant continu"
+    ]
+  },
+  {
+    id: 7,
+    title: "Tesla Model S Plaid",
+    marque: "Tesla",
+    categorie: "Voiture électrique",
+    annee: 2024,
+    image: "https://images.unsplash.com/photo-1560958089-b8a1929cea89?auto=format&fit=crop&w=1200&q=85",
+    metric: 1020,
+    unite: "ch",
+    prix: 89990,
+    acceleration: "Environ 2,1 secondes",
+    vitesseMax: "322 km/h",
+    transmission: "Transmission à rapport unique",
+    motorisation: "Électrique",
+    descriptionCourte: "Une berline électrique haute performance privilégiant le couple instantané et les technologies numériques.",
+    detailsComplets: "La Tesla Model S Plaid utilise trois moteurs électriques et une transmission intégrale. Elle associe accélérations impressionnantes, habitacle spacieux, commandes numériques et mises à jour logicielles à distance.",
+    pointsForts: [
+      "Trois moteurs électriques",
+      "Transmission intégrale",
+      "Mises à jour logicielles à distance"
+    ]
+  },
+  {
+    id: 8,
+    title: "Ford Mustang Dark Horse",
+    marque: "Ford",
+    categorie: "Muscle car",
+    annee: 2024,
+    image: "https://images.unsplash.com/photo-1584345604476-8ec5f452d1f5?auto=format&fit=crop&w=1200&q=85",
+    metric: 500,
+    unite: "ch",
+    prix: 59985,
+    acceleration: "Variable selon la configuration",
+    vitesseMax: "Variable selon la version",
+    transmission: "Manuelle à 6 rapports ou automatique à 10 rapports",
+    motorisation: "Essence",
+    descriptionCourte: "Un coupé américain moderne équipé d'un moteur V8 atmosphérique et conçu pour les amateurs de conduite sportive.",
+    detailsComplets: "La Mustang Dark Horse privilégie les performances sur circuit grâce à ses réglages de châssis, son refroidissement renforcé et son style distinctif. Elle conserve le caractère traditionnel d'une muscle car à propulsion arrière.",
+    pointsForts: [
+      "Moteur V8 de 5 litres",
+      "Propulsion arrière",
+      "Châssis adapté à la conduite sportive"
+    ]
+  },
+  {
+    id: 9,
+    title: "Chevrolet Corvette Z06",
+    marque: "Chevrolet",
+    categorie: "Voiture sportive",
+    annee: 2024,
+    image: "https://images.unsplash.com/photo-1552519507-da3b142c6e3d?auto=format&fit=crop&w=1200&q=85",
+    metric: 670,
+    unite: "ch",
+    prix: 112100,
+    acceleration: "Environ 2,6 secondes",
+    vitesseMax: "Environ 315 km/h",
+    transmission: "Boîte à double embrayage à 8 rapports",
+    motorisation: "Essence",
+    descriptionCourte: "Une sportive américaine à moteur central, conçue pour offrir précision de conduite et performances sur circuit.",
+    detailsComplets: "La Corvette Z06 est équipée d'un moteur V8 atmosphérique à vilebrequin plat, d'une carrosserie élargie et d'une aérodynamique optimisée. Elle propose une approche technique proche des supercars.",
+    pointsForts: [
+      "Moteur V8 de 5,5 litres",
+      "Architecture à moteur central",
+      "Pack aérodynamique disponible"
+    ]
+  },
+  {
+    id: 10,
+    title: "Toyota GR Supra",
+    marque: "Toyota",
+    categorie: "Voiture sportive",
+    annee: 2024,
+    image: "https://images.unsplash.com/photo-1614200187524-dc4b892acf16?auto=format&fit=crop&w=1200&q=85",
+    metric: 382,
+    unite: "ch",
+    prix: 56900,
+    acceleration: "Environ 3,9 secondes",
+    vitesseMax: "250 km/h",
+    transmission: "Automatique à 8 rapports ou manuelle à 6 rapports",
+    motorisation: "Essence",
+    descriptionCourte: "Un coupé sportif compact à propulsion arrière, conçu pour privilégier l'agilité et le plaisir de conduite.",
+    detailsComplets: "La Toyota GR Supra associe un moteur six cylindres en ligne turbocompressé à un empattement court et à un châssis rigide. Ses proportions compactes et son comportement réactif la rendent agréable sur route.",
+    pointsForts: [
+      "Moteur six cylindres turbocompressé",
+      "Propulsion arrière",
+      "Habitacle orienté conducteur"
+    ]
+  },
+  {
+    id: 11,
+    title: "Range Rover Sport",
+    marque: "Land Rover",
+    categorie: "SUV de luxe",
+    annee: 2024,
+    image: "https://images.unsplash.com/photo-1519641471654-76ce0107ad1b?auto=format&fit=crop&w=1200&q=85",
+    metric: 523,
+    unite: "ch",
+    prix: 83500,
+    acceleration: "Environ 4,3 secondes",
+    vitesseMax: "Environ 250 km/h",
+    transmission: "Boîte automatique à 8 rapports",
+    motorisation: "Essence",
+    descriptionCourte: "Un SUV premium combinant confort, performances routières et capacités tout-terrain.",
+    detailsComplets: "Le Range Rover Sport associe des matériaux raffinés, des systèmes d'aide à la conduite avancés et une suspension sophistiquée. Les caractéristiques du moteur varient selon la finition et le marché.",
+    pointsForts: [
+      "Habitacle haut de gamme",
+      "Suspension adaptative",
+      "Gestion des modes tout-terrain"
+    ]
+  },
+  {
+    id: 12,
+    title: "Porsche Taycan Turbo GT",
+    marque: "Porsche",
+    categorie: "Voiture électrique",
+    annee: 2025,
+    image: "https://images.unsplash.com/photo-1611859266238-4b98091d9d9b?auto=format&fit=crop&w=1200&q=85",
+    metric: 1019,
+    unite: "ch",
+    prix: 230000,
+    acceleration: "Environ 2,2 secondes",
+    vitesseMax: "290 km/h",
+    transmission: "Transmission automatique à deux rapports",
+    motorisation: "Électrique",
+    descriptionCourte: "Une berline sportive électrique conçue pour des accélérations extrêmes et une tenue de route précise.",
+    detailsComplets: "La Porsche Taycan Turbo GT combine une motorisation électrique puissante, une gestion avancée du châssis et des options d'allègement. Les performances varient selon la configuration et les conditions d'utilisation.",
+    pointsForts: [
+      "Deux moteurs électriques",
+      "Châssis orienté performance",
+      "Recharge rapide haute tension"
+    ]
+  }
+];
+export default catalogItems;

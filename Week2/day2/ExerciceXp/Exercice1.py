@@ -1,10 +1,4 @@
-# The output will be:
-# ['a', 'b', 'c']
-
-# Why:
-# The __repr__ method in the PrintList class returns the string form of self.my_list.
-
-
+##What will be the output?
 class PrintList():
 
     def __init__(self, my_list):

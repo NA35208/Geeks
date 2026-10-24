@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CarDex</title>
+    <link rel="stylesheet" href="style.css">
+    <script type="module" src="app.js" defer></script>
+  </head>
+  <body>
+    <header class="header">
+      <div class="brand">
+        <img src="images/image_b5d0e801 (2).png" alt="Logo" class="logo">
+        <h1 class="app-title">CarDex</h1>
+      </div>
+      <input type="search" id="search" placeholder="Chercher..." aria-label="Rechercher une voiture">
+      <button type="button" id="theme-switch" class="theme-switch" aria-pressed="false">Mode sombre</button>
+    </header>
+
+    <section class="controls" aria-label="Filtres et tri">
+      <label class="sr-only" for="category-filter">Catégorie</label>
+      <select id="category-filter">
+        <option value="">Toutes les catégories</option>
+        <option value="Voiture sportive">Voiture sportive</option>
+        <option value="Supercar">Supercar</option>
+        <option value="Berline sportive">Berline sportive</option>
+        <option value="Voiture électrique">Voiture électrique</option>
+        <option value="Muscle car">Muscle car</option>
+        <option value="SUV de luxe">SUV de luxe</option>
+      </select>
+
+      <label class="sr-only" for="price-filter">Prix</label>
+      <select id="price-filter">
+        <option value="">Tous les prix</option>
+        <option value="0-50000">0 - 50 000 €</option>
+        <option value="50000-100000">50 000 - 100 000 €</option>
+        <option value="100000-200000">100 000 - 200 000 €</option>
+        <option value="200000-500000">200 000 - 500 000 €</option>
+        <option value="500000+">500 000 € et plus</option>
+      </select>
+
+      <label class="sr-only" for="motorisation">Motorisation</label>
+      <select id="motorisation">
+        <option value="">Toutes les motorisations</option>
+        <option value="Essence">Essence</option>
+        <option value="Diesel">Diesel</option>
+        <option value="Hybride">Hybride</option>
+        <option value="Électrique">Électrique</option>
+      </select>
+
+      <label class="sr-only" for="marque-filter">Marque</label>
+      <input type="text" id="marque-filter" placeholder="Marque">
+
+      <label class="sr-only" for="sort-filter">Trier par</label>
+      <select id="sort-filter">
+        <option value="">Trier par</option>
+        <option value="price-asc">Prix croissant</option>
+        <option value="price-desc">Prix décroissant</option>
+        <option value="name-asc">Nom A-Z</option>
+        <option value="name-desc">Nom Z-A</option>
+      </select>
+    </section>
+
+    <main class="main-content">
+      <button type="button" id="add-car-button" class="primary-button">Ajouter une voiture</button>
+      <div id="cards-grid"></div>
+      <p id="no-results" class="no-results" hidden>Aucun élément ne correspond à vos critères.</p>
+    </main>
+
+    <dialog id="car-dialog" class="modal" aria-label="Détails du véhicule"></dialog>
+
+    <dialog id="add-car" class="modal" aria-labelledby="add-car-title">
+      <div class="dialog-content">
+        <button type="button" class="close-button" aria-label="Fermer">&times;</button>
+        <h2 id="add-car-title">Ajouter une voiture</h2>
+        <form id="add-car-form" class="add-form">
+          <label>Titre :
+            <input type="text" name="title" required>
+          </label>
+          <label>Marque :
+            <input type="text" name="marque" required>
+          </label>
+          <label>Catégorie :
+            <input type="text" name="categorie" required>
+          </label>
+          <label>Motorisation :
+            <select name="motorisation" required>
+              <option value="Essence">Essence</option>
+              <option value="Diesel">Diesel</option>
+              <option value="Hybride">Hybride</option>
+              <option value="Électrique">Électrique</option>
+            </select>
+          </label>
+          <label>Année :
+            <input type="number" name="annee" min="1900" max="2100" required>
+          </label>
+          <label>Prix (€) :
+            <input type="number" name="prix" min="0" required>
+          </label>
+          <label>Puissance :
+            <input type="number" name="metric" min="1" required>
+          </label>
+          <label>Unité :
+            <input type="text" name="unite" value="ch">
+          </label>
+          <label>Accélération :
+            <input type="text" name="acceleration" required>
+          </label>
+          <label>Vitesse maximale :
+            <input type="text" name="vitesseMax" required>
+          </label>
+          <label>Transmission :
+            <input type="text" name="transmission" required>
+          </label>
+          <label>URL de l'image (facultatif) :
+            <input type="url" name="image">
+          </label>
+          <label class="full-width">Description courte :
+            <textarea name="descriptionCourte" rows="2" required></textarea>
+          </label>
+          <label class="full-width">Détails complets :
+            <textarea name="detailsComplets" rows="4" required></textarea>
+          </label>
+          <label class="full-width">Points forts (séparés par des virgules) :
+            <input type="text" name="pointsForts" required>
+          </label>
+          <button type="submit" class="primary-button full-width">Ajouter</button>
+        </form>
+      </div>
+    </dialog>
+  </body>
+</html>
