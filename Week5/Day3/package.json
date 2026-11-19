@@ -1,0 +1,9 @@
+{
+  "name": "day3",
+  "version": "1.0.0",
+  "description": "Day 3 - Express and express.Router",
+  "main": "index.js",
+  "dependencies": {
+    "express": "^4.21.0"
+  }
+}

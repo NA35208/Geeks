@@ -1,0 +1,2 @@
+This is a test file for the Ninja read command.
+Node.js fs module is working properly!

@@ -1,0 +1,1 @@
+This is a sample text file used for path manipulation and file system inspection in Node.js.

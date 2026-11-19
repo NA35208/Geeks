@@ -1,0 +1,12 @@
+{
+  "name": "faker-module",
+  "version": "1.0.0",
+  "description": "Faker user generator and interactive prompt",
+  "main": "app.js",
+  "scripts": {
+    "start": "node app.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
+}

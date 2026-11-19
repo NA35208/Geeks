@@ -1,0 +1,10 @@
+{
+  "name": "emoji-greeting-app",
+  "version": "1.0.0",
+  "description": "Emoji Greeting App with express.Router",
+  "main": "app.js",
+  "scripts": {
+    "start": "node app.js"
+  },
+  "license": "ISC"
+}

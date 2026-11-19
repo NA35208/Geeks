@@ -1,0 +1,10 @@
+{
+  "name": "day3-xp-gold-blog-api",
+  "version": "1.0.0",
+  "description": "Blog API with express.Router",
+  "main": "app.js",
+  "scripts": {
+    "start": "node app.js"
+  },
+  "license": "ISC"
+}
