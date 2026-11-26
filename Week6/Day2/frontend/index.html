@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Day 2 - Assistant Interface</title>
+  <!-- React & Babel from CDN for standalone portability -->
+  <script src="https://unpkg.com/react@18/umd/react.development.js" crossorigin></script>
+  <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js" crossorigin></script>
+  <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+  <style>
+    body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; background: #f4f6f8; margin: 0; padding: 20px; }
+    .chat-container { max-width: 600px; margin: 0 auto; background: white; border-radius: 8px; box-shadow: 0 4px 12px rgba(0,0,0,0.1); overflow: hidden; display: flex; flex-direction: column; height: 80vh; }
+    .header { padding: 16px; background: #2563eb; color: white; display: flex; justify-content: space-between; align-items: center; }
+    .messages { flex: 1; padding: 16px; overflow-y: auto; display: flex; flex-direction: column; gap: 10px; }
+    .message { max-width: 80%; padding: 10px 14px; border-radius: 12px; font-size: 14px; line-height: 1.4; }
+    .message.user { align-self: flex-end; background: #2563eb; color: white; border-bottom-right-radius: 2px; }
+    .message.bot { align-self: flex-start; background: #f1f5f9; color: #1e293b; border-bottom-left-radius: 2px; }
+    .message.error { align-self: center; background: #fee2e2; color: #991b1b; border: 1px solid #f87171; width: 90%; text-align: center; }
+    .input-bar { display: flex; padding: 12px; border-top: 1px solid #e2e8f0; background: #ffffff; gap: 8px; }
+    input[type="text"] { flex: 1; padding: 10px 12px; border: 1px solid #cbd5e1; border-radius: 6px; font-size: 14px; }
+    input[type="text"]:focus { outline: none; border-color: #2563eb; }
+    button { padding: 10px 16px; background: #2563eb; color: white; border: none; border-radius: 6px; font-weight: 600; cursor: pointer; }
+    button:disabled { background: #94a3b8; cursor: not-allowed; }
+    .loading-indicator { font-style: italic; color: #64748b; font-size: 12px; margin-top: 4px; }
+    .controls { font-size: 12px; background: #f8fafc; padding: 8px 16px; border-bottom: 1px solid #e2e8f0; display: flex; gap: 12px; }
+  </style>
+</head>
+<body>
+  <div id="root"></div>
+
+  <script type="text/babel">
+    const { useState } = React;
+
+    function ChatApp() {
+      const [messages, setMessages] = useState([
+        { id: 1, sender: "bot", text: "Hello! I am your support assistant. How can I help you today?" }
+      ]);
+      const [input, setInput] = useState("");
+      const [isLoading, setIsLoading] = useState(false);
+      const [errorMessage, setErrorMessage] = useState(null);
+      const [promptMode, setPromptMode] = useState("improved");
+
+      const sendMessage = async (e) => {
+        if (e) e.preventDefault();
+        if (!input.trim() || isLoading) return;
+
+        const userText = input;
+        const newMsgId = Date.now();
+        setMessages(prev => [...prev, { id: newMsgId, sender: "user", text: userText }]);
+        setInput("");
+        setIsLoading(true);
+        setErrorMessage(null);
+
+        try {
+          // Exercise 4 - Calling Flask service at 127.0.0.1:5001
+          const response = await fetch(`http://127.0.0.1:5001/chat?mode=${promptMode}`, {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ message: userText })
+          });
+
+          if (!response.ok) {
+            const errData = await response.json().catch(() => ({ error: `HTTP ${response.status}` }));
+            throw new Error(errData.error || `Server responded with ${response.status}`);
+          }
+
+          const data = await response.json();
+          setMessages(prev => [...prev, { id: Date.now() + 1, sender: "bot", text: data.reply }]);
+        } catch (err) {
+          // Exercise 4: Display error and leave loading state
+          console.error("Network / service failure:", err);
+          setErrorMessage(`Service Error: Unable to reach backend (${err.message}). Is Flask running on port 5001?`);
+        } finally {
+          setIsLoading(false); // leaves loading state
+        }
+      };
+
+      return (
+        <div className="chat-container">
+          <div className="header">
+            <strong>Customer Support Chat</strong>
+            <span>Flask :5001</span>
+          </div>
+
+          <div className="controls">
+            <span>Prompt Mode:</span>
+            <label>
+              <input 
+                type="radio" 
+                value="improved" 
+                checked={promptMode === "improved"} 
+                onChange={() => setPromptMode("improved")} 
+              /> Improved (Ex 1)
+            </label>
+            <label>
+              <input 
+                type="radio" 
+                value="base" 
+                checked={promptMode === "base"} 
+                onChange={() => setPromptMode("base")} 
+              /> Base (Default)
+            </label>
+          </div>
+
+          <div className="messages">
+            {messages.map(m => (
+              <div key={m.id} className={`message ${m.sender}`}>
+                {m.text}
+              </div>
+            ))}
+            {isLoading && <div className="loading-indicator">Assistant is typing...</div>}
+            {errorMessage && (
+              <div className="message error">
+                {errorMessage}
+              </div>
+            )}
+          </div>
+
+          <form className="input-bar" onSubmit={sendMessage}>
+            <input 
+              type="text" 
+              placeholder="Type your message..." 
+              value={input} 
+              onChange={e => setInput(e.target.value)} 
+              disabled={isLoading}
+            />
+            <button type="submit" disabled={isLoading || !input.trim()}>
+              {isLoading ? "Sending..." : "Send"}
+            </button>
+          </form>
+        </div>
+      );
+    }
+
+    ReactDOM.createRoot(document.getElementById("root")).render(<ChatApp />);
+  </script>
+</body>
+</html>
